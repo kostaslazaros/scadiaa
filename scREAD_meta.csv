@@ -1,0 +1,63 @@
+id,species,state,region,gender,age,cells,genes
+AD00201,human,control,entorhinal cortex,male,50-91y,29993,24694
+AD00202,human,control,entorhinal cortex,female,67-91y,1122,10790
+AD00203,human,disease,entorhinal cortex,male,67-91y,3770,24694
+AD00204,human,disease,entorhinal cortex,female,67-91y,2303,10827
+AD00206,human,disease,entorhinal cortex,male,50-91y,25537,26582
+AD00301,mouse,control,cortex,male,7m,25775,15281
+AD00302,mouse,control,cortex,male,15m,10548,17187
+AD00303,mouse,disease,cortex,male,7m,2261,17442
+AD00304,mouse,disease,cortex,male,7m,21444,18838
+AD00305,mouse,disease,cortex,male,7m,16810,18609
+AD00306,mouse,disease,cortex,male,7m,19188,18827
+AD00307,mouse,disease,cortex,male,15m,6675,17240
+AD00308,mouse,disease,cortex,male,15m,4742,17222
+AD00309,mouse,disease,cortex,male,15m,4708,17196
+AD00401,mouse,control,cerebral cortex,female,15m,8153,14136
+AD00402,mouse,disease,cerebral cortex,female,15m,6243,14708
+AD00403,mouse,disease,cerebral cortex,female,15m,7942,14868
+AD00404,mouse,disease,cerebral cortex,male,15m,3314,14484
+AD00405,mouse,disease,cerebral cortex,male,15m,1697,14701
+AD00501,mouse,control,cerebellum,male,7m,740,8976
+AD00502,mouse,disease,cerebellum,male,7m,2304,10418
+AD00601,mouse,control,prefrontal cortex,male,7m,1572,12249
+AD00602,mouse,control,prefrontal cortex,male,15m,1148,12655
+AD00603,mouse,disease,prefrontal cortex,male,7m,1146,12539
+AD00604,mouse,disease,prefrontal cortex,male,15m,2079,13483
+AD00702,mouse,control,hippocampus,male,7m,432,15092
+AD00703,mouse,control,hippocampus,male,15m,3764,11041
+AD00704,mouse,control,hippocampus,female,7m,519,15809
+AD00705,mouse,control,hippocampus,female,20m,655,16621
+AD00708,mouse,disease,hippocampus,male,7m,1049,18985
+AD00709,mouse,disease,hippocampus,male,7m,1150,19192
+AD00710,mouse,disease,hippocampus,male,7m,278,15569
+AD00711,mouse,disease,hippocampus,male,15m,755,12364
+AD00712,mouse,disease,hippocampus,male,15m,794,12445
+AD00713,mouse,disease,hippocampus,male,15m,875,12372
+AD00714,mouse,disease,hippocampus,male,15m,2538,14314
+AD00715,mouse,disease,hippocampus,male,15m,2974,14956
+AD00716,mouse,disease,hippocampus,male,15m,2696,14564
+AD00717,mouse,disease,hippocampus,male,20m,456,16202
+AD00718,mouse,disease,hippocampus,female,7m,563,16201
+AD00719,mouse,disease,hippocampus,female,20m,377,16731
+AD00801,human,control,superior frontal gyrus,male,50-91y,33711,26296
+AD00802,human,disease,superior frontal gyrus,male,50-91y,27946,26985
+AD00803,human,disease,superior frontal gyrus,male,50-91y,32901,27447
+AD00901,mouse,control,cortex and hippocampus,female,7m,2793,15491
+AD00902,mouse,control,cortex and hippocampus,female,7m,18144,18798
+AD00903,mouse,disease,cortex and hippocampus,female,7m,5937,16048
+AD00904,mouse,disease,cortex and hippocampus,female,7m,16886,19055
+AD01001,mouse,control,subventicular zone and hippocampus,female,7m,1676,11739
+AD01002,mouse,control,subventicular zone and hippocampus,female,7m,1689,12419
+AD01003,mouse,disease,subventicular zone and hippocampus,female,7m,1695,11999
+AD01004,mouse,disease,subventicular zone and hippocampus,female,7m,1164,12568
+AD01101,human,control,prefrontal cortex BA9,male,57-93y,13502,20746
+AD01102,human,control,prefrontal cortex BA9,female,57-93y,25014,22712
+AD01103,human,disease,prefrontal cortex BA9,male,57-93y,9120,20878
+AD01104,human,disease,prefrontal cortex BA9,female,57-93y,11873,22800
+AD01201,human,control,superior parietal lobe,male,72-103y,779,10453
+AD01202,human,control,superior parietal lobe,female,72-103y,939,12346
+AD01203,human,disease,superior parietal lobe,male,72-103y,3127,13704
+AD01204,human,disease,superior parietal lobe,female,72-103y,963,12845
+AD01205,human,disease,superior parietal lobe,male,72-103y,1731,12213
+AD01206,human,disease,superior parietal lobe,female,72-103y,8632,16092
