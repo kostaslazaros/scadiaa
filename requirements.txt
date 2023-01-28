@@ -2,3 +2,4 @@ streamlit
 streamlit-aggrid
 scanpy
 hdf5plugin
+scalex

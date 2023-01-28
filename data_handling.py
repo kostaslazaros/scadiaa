@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 import anndata as ad
 from scipy import sparse
-from config import H5AD_PATH, H5AD_CONCATED_PATH, TXT_GZ_PATH, SCREAD_URL
+from config import H5AD_PATH, H5AD_CONCATED_PATH, TXT_GZ_PATH, SCREAD_URL, INTEGRATED_PATH
 from hash_encode import list2md5
 from matplotlib.pyplot import rc_context
 
@@ -56,6 +56,9 @@ def create_h5ad(filename, df_annot) -> None:
     mtx.obs['gender'] = gender
     mtx.obs['age'] = age
     mtx.obs['data_id'] = filename
+    sc.pp.pca(mtx)
+    sc.pp.neighbors(mtx)
+    sc.tl.umap(mtx)
     writeh5(mtx, h5ad_path)
 
 
@@ -84,7 +87,7 @@ def run_scalex(h5ad_name):
         batch_name='batch',
         min_features=400,
         min_cells=3,
-        outdir=f'{h5ad_name}',
+        outdir=f'{INTEGRATED_PATH}{h5ad_name}',
         show=False,
         gpu=7
     )
