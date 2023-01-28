@@ -2,17 +2,16 @@ import os
 import requests
 import hdf5plugin
 from scalex import SCALEX
-from scalex.plot import embedding
-from scalex.metrics import batch_entropy_mixing_score
-from scalex.metrics import silhouette_score
+# from scalex.plot import embedding
+# from scalex.metrics import batch_entropy_mixing_score
+# from scalex.metrics import silhouette_score
 import scanpy as sc
 import numpy as np
 import pandas as pd
 import anndata as ad
 from scipy import sparse
 from config import H5AD_PATH, H5AD_CONCATED_PATH, TXT_GZ_PATH, SCREAD_URL, INTEGRATED_PATH
-from hash_encode import list2md5
-from matplotlib.pyplot import rc_context
+# from matplotlib.pyplot import rc_context
 
 
 def get_datasets(name: str, prefix: str, postfix: str) -> None:
@@ -62,15 +61,18 @@ def create_h5ad(filename, df_annot) -> None:
     writeh5(mtx, h5ad_path)
 
 
-def merge_data(name_lst: list):
+def merge_data(name_lst: list, merged_h5ad_name):
     anndata_lst = []
-    merged_h5ad_name = f'{list2md5(name_lst)}.h5ad'
+    conc_name = f'{H5AD_CONCATED_PATH}{merged_h5ad_name}'
+    if os.path.exists(conc_name):
+        print(f'File {conc_name} already exists')
+        return
+    # merged_h5ad_name = f'{list2md5(name_lst)}.h5ad'
     for name in name_lst:
         anndata = sc.read_h5ad(f'{H5AD_PATH}{name}.h5ad')
         anndata_lst.append(anndata)
     merged_anndata = ad.AnnData.concatenate(*anndata_lst, join='inner')
-    writeh5(merged_anndata, f'{H5AD_CONCATED_PATH}{merged_h5ad_name}')
-    return merged_h5ad_name
+    writeh5(merged_anndata, conc_name)
 
 
 def writeh5(adata, file_path):
