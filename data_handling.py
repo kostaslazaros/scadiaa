@@ -12,7 +12,7 @@ import anndata as ad
 from scipy import sparse
 from config import H5AD_PATH, H5AD_CONCATED_PATH, TXT_GZ_PATH, SCREAD_URL
 from hash_encode import list2md5
-
+from matplotlib.pyplot import rc_context
 
 
 def get_datasets(name: str, prefix: str, postfix: str) -> None:
@@ -40,19 +40,15 @@ def create_h5ad(filename, df_annot) -> None:
     filename_idx = np.where(df_annot['id'].values == filename)[0][0]
     idv, species, state, region, gender, age, _, _ = df_annot.iloc[filename_idx]
     print(idv, species, state, region, gender, age)
-
-    # Start from here
     mtx = sc.read(expr_path, cache=True)
     mtx = mtx.transpose()
     mtx.X = sparse.csr_matrix(mtx.X)
-
     cell_labels = pd.read_csv(
         cell_lbl_path,
         delimiter='\t',
         names=['cell_name', 'label']
     )
     cell_labels = cell_labels.iloc[1:, :]
-
     mtx.obs['cell_type'] = list(cell_labels.label.values)
     mtx.obs['species'] = species
     mtx.obs['state'] = state
@@ -60,12 +56,7 @@ def create_h5ad(filename, df_annot) -> None:
     mtx.obs['gender'] = gender
     mtx.obs['age'] = age
     mtx.obs['data_id'] = filename
-
-    mtx.write_h5ad(
-        h5ad_path,
-        compression=hdf5plugin.FILTERS['zstd'],
-        compression_opts=hdf5plugin.Zstd(clevel=5).filter_options
-    )
+    writeh5(mtx, h5ad_path)
 
 
 def merge_data(name_lst: list):
@@ -75,16 +66,19 @@ def merge_data(name_lst: list):
         anndata = sc.read_h5ad(f'{H5AD_PATH}{name}.h5ad')
         anndata_lst.append(anndata)
     merged_anndata = ad.AnnData.concatenate(*anndata_lst, join='inner')
-    merged_anndata.write_h5ad(
-        f'{H5AD_CONCATED_PATH}{merged_h5ad_name}',
+    writeh5(merged_anndata, f'{H5AD_CONCATED_PATH}{merged_h5ad_name}')
+    return merged_h5ad_name
+
+
+def writeh5(adata, file_path):
+    adata.write_h5ad(
+        file_path,
         compression=hdf5plugin.FILTERS['zstd'],
         compression_opts=hdf5plugin.Zstd(clevel=5).filter_options
     )
-    return merged_h5ad_name
     
 
 def run_scalex(h5ad_name):
-    
     anndata_corrected = SCALEX(
         f'{H5AD_CONCATED_PATH}{h5ad_name}',
         batch_name='batch',
@@ -94,3 +88,9 @@ def run_scalex(h5ad_name):
         show=False,
         gpu=7
     )
+
+
+# def visualize_umap(h5ad_path):
+#     anndata = sc.read_h5ad(h5ad_path)
+#     with rc_context({'figure.figsize': (6, 6)}):
+#         sc.pl.umap(anndata,color=['batch'],legend_fontsize=10)
